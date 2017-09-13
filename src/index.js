@@ -12,8 +12,8 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={App} />
-        <Route exact path='/chat' component={Chat} />
+        <Route exact path="/" component={App} />
+        <Route exact path="/chat" component={Chat} />
       </Switch>
     </BrowserRouter>
   </Provider>

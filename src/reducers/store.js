@@ -1,14 +1,15 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { composeWithDevtools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import ChatReducer from './chat-reducer';
 
+// this is the state of each component, all combined into one through CombineReducers
 const allReducers = combineReducers({
   messages: ChatReducer,
 });
 
 export default createStore(
   allReducers,
-  composeWithDevtools(applyMiddleware(thunk),
+  composeWithDevTools(applyMiddleware(thunk),
   ),
 );

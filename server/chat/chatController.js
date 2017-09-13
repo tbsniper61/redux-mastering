@@ -1,19 +1,19 @@
-import Chat from './chatModel'
+const Chat = require('./chatModel');
 
-const chatController = {}
+const chatController = {};
 
 chatController.fetchMessages = (req, res) => {
-  Chat.find({}, (err, messages) =>{
+  Chat.find({}, (err, messages) => {
     if (err) throw err;
-    if (messages) res.send(messages)
-  })
-}
+    if (messages) res.send(messages);
+  });
+};
 
 chatController.postMessage = (req, res) => {
   Chat.create(req.body, (err, message) => {
     if (err) throw err;
-    if (message) res.send(message)
-  })
-}
+    if (message) res.send(message);
+  });
+};
 
-module.exports = chatController
+module.exports = chatController;
