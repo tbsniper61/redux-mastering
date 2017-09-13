@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postMessage } from '../reducers/chat-reducer';
-
-// component to be each message
-const Message = ({ message, author, time }) => ( // <--- stateless uses parens
-  <div className="message">
-    <p className="m">{message}</p>
-    <p className="a">{author}</p>
-    <p className="t">{time}</p>
-  </div>
-);
+import MessageItem from './MessageItem';
 
 // component to hold list of chat messages
 class MessageList extends Component {
   render() {
     return (
       <div className="message-list" >
-        {this.props.messages.messages.map(message => 
-          <Message key={message._id} {...message} />
+        {this.props.messages.map(message => 
+          <MessageItem key={message._id} {...message} />
         )}
       </div>
     );

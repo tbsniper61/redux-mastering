@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postMessage, getMessages } from '../reducers/chat-reducer';
 import axios from 'axios';
-import MessageList from './Message';
+import MessageList from './MessageList';
 
 // component to type in message and post to database
 class Chat extends Component {
@@ -19,8 +19,6 @@ class Chat extends Component {
   getData = () => {
     axios.get('/chat')
     .then((res) => {
-      console.log('got data');
-      console.log(res.data);
       this.props.getMessages(res.data);
     })
   }
@@ -28,9 +26,6 @@ class Chat extends Component {
   postData = () => {
     axios.post('/chat', {message: this.state.text, author: 'will'})
     .then((res) => {
-      console.log('message posted');
-      console.log('res.data');
-      console.log(res.data);
       this.props.postMessage(res.data);
     });
   }

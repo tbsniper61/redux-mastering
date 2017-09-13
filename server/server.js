@@ -19,6 +19,8 @@ app.use(express.static('./'), bodyparser());
 
 app.get('/chat', chatController.fetchMessages)
 app.post('/chat', chatController.postMessage)
+app.delete('/chat/:messageID', chatController.deleteMessage)
+app.patch('/chat/:messageID', chatController.updateMessage)
 
 app.listen(PORT, () => {
   console.log(`server 👂  @ port ${PORT}`);

@@ -16,4 +16,17 @@ chatController.postMessage = (req, res) => {
   });
 };
 
+chatController.deleteMessage = (req, res) => {
+  Chat.findByIdAndRemove(req.params.messageID, (err, message) => {
+    if (err) throw err;
+    if (message) res.send(message);
+  });
+};
+
+chatController.updateMessage = (req, res) => {
+  Chat.findByIdAndUpdate(req.params.messageID, req.body, { new: true }, (err, message) => {
+    if (err) throw err;
+    if (message) res.send(message);
+  });
+};
 module.exports = chatController;
