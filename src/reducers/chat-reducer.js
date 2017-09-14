@@ -7,7 +7,6 @@ const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 
 // payload is the incoming message
 export const postMessage = (message) => {
-  console.log('post message reducer');
   return {
     type: POST_MESSAGE,
     payload: message,
@@ -15,7 +14,6 @@ export const postMessage = (message) => {
 };
 
 export const getMessages = (messages) => {
-  console.log('getting messages from server and updating redux');
   return {
     type: GET_MESSAGES,
     payload: messages,
@@ -23,7 +21,6 @@ export const getMessages = (messages) => {
 };
 
 export const deleteMessage = (message) => {
-  console.log('dispatched deleted');
   return {
     type: DELETE_MESSAGE,
     payload: message,
@@ -59,11 +56,10 @@ export default (state = [], action) => {
       return copy;
 
     case UPDATE_MESSAGE:
-      console.log('UPDATEMESSAGE')
       const copyUpdate = state.slice();
       let index;
       for (let i = 0; i < copyUpdate.length; i++) {
-        if (copyUpdate[i]._id === action.payload._id) {
+        if (  copyUpdate[i]._id === action.payload._id) {
           copyUpdate[i] = action.payload;
           break;
         }

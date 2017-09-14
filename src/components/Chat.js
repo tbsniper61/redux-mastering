@@ -10,6 +10,8 @@ class Chat extends Component {
 
   componentDidMount() {
     this.getData();
+    // console.log('**** chat ****')
+    // console.log(this);
   }
 
   handleChange = (evt) => {

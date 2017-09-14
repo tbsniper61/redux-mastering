@@ -18,7 +18,6 @@ class Login extends Component {
 
   handleButton = (e) => {
     e.preventDefault();
-    console.log('hello')
     if (this.state.username === 'hello' && this.state.password === 'world') {
       this.setState({
         isLoggedIn: true
