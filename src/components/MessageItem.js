@@ -12,9 +12,6 @@ class MessageItem extends Component {
     axios.delete(`/chat/${this.props._id}`)
     .then((res) => {
       this.props.deleteMessage(res.data)
-      this.setState({
-        text: ''
-      })
     })
   }
 
