@@ -4,36 +4,32 @@ import chatReducer from '../reducers/chat-reducer';
 import ride from 'ride';
 
 class God extends Component {
+  state = { tree: {} }
+
   traverseGOD = () => {
     let components = [];
     let dom = this._reactInternalInstance._renderedComponent
-    recursiveTraverse(dom)
-    console.log(this)
-    console.log(components.slice(1))
+
+    recursiveTraverse(dom, components)
+    console.log('return')
+    console.log(components)
     return components
 
-    function recursiveTraverse(component) {
-      const newComponent = {}
-
-      // if component exists
+    function recursiveTraverse(component, parentArr) {
+      let newComponent = {}
       if (!component._currentElement) return
-
-      // check if component is a DOM element or a react component
       newComponent.name = component._currentElement.type.name || component._currentElement.type
-      newComponent.children = component._currentElement.props.children
-      components.push(newComponent)
-      
-      // save a reference to the rendered children and iterate through them using recur function
+      newComponent.children = [];
+
       const componentChildren = component._renderedChildren
+      parentArr.push(newComponent);
       if (componentChildren) {
-        // loop through array of children
         for (let key in componentChildren) {
-          recursiveTraverse(componentChildren[key])
+          recursiveTraverse(componentChildren[key], newComponent.children)
         }
       }
-      // loop through single child
       else if (component._renderedComponent) {
-        recursiveTraverse(component._renderedComponent)
+        recursiveTraverse(component._renderedComponent, newComponent.children)
       }
     };
   }
@@ -41,16 +37,13 @@ class God extends Component {
   componentDidMount() {
     ride(React.Component.prototype, 'setState')
       .after(() => {
-        // this.traverseGod()
         this.traverseGOD()
-        // console.log('hello')
       });
-      console.log(this)
+    console.log(this)
   }
 
   componentDidUpdate() {
-    // this.traverseGod()
-    this.traverseGOD()    
+    this.traverseGOD()
   }
 
   render() {
@@ -63,6 +56,3 @@ class God extends Component {
 }
 
 export default God;
-// export default connect(
-//   state => ({ ...state }),
-// )(God);
